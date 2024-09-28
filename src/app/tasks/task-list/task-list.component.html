@@ -1,0 +1,41 @@
+<div class="table-responsive task-table">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre Tarea</th>
+                <th>Fecha Límite</th>
+                <th>Nombre Integrantes</th>
+                <th>Habilidades</th>
+                <th>Estado</th> <!-- Nueva columna para el estado -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tarea of tareas">
+                <td>{{ tarea.id }}</td>
+                <td>{{ tarea.nombreTarea }}</td>
+                <td>{{ tarea.fechaLimite | date: 'shortDate' }}</td>
+                <td>{{ obtenerNombresIntegrantes(tarea) }}</td>
+                <td>{{ obtenerHabilidades(tarea) }}</td>
+                <td>
+                    <div class="filtro-container">
+                        <select class="form-select" [(ngModel)]="tarea.estado" (change)="cambiarEstado(tarea.id, tarea.estado)">
+                            <option value="Pendiente" [selected]="tarea.estado === 'Pendiente'">Pendiente</option>
+                            <option value="Completada" [selected]="tarea.estado === 'Completada'">Completada</option>
+                        </select>
+                    </div>
+                    
+                </td> <!-- Select para cambiar el estado de la tarea -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="filtro-container">
+    <label for="filtro">Filtrar Tareas:</label>
+    <select id="filtro" (change)="filtrar($event)">
+        <option value="">Todas</option>
+        <option value="Completada">Completadas</option>
+        <option value="Pendiente">Pendientes</option>
+    </select>
+</div>

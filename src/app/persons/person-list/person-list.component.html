@@ -1,0 +1,10 @@
+<div class="person-table">
+    <div *ngIf="personas.length > 0; else noPersonas">
+        <app-table [data]="personas" [displayedColumns]="columnas"></app-table>
+    </div>
+    
+    <ng-template #noPersonas>
+        <p>No hay personas registradas.</p>
+    </ng-template>
+    
+</div>

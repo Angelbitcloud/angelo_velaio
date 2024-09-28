@@ -1,0 +1,48 @@
+.task-table {
+    padding-top: 50px;
+}
+
+/* Contenedor del filtro */
+.filtro-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+/* Estilos para la etiqueta */
+.filtro-container label {
+    margin-right: 10px; /* Espaciado a la derecha del label */
+    font-weight: bold; /* Texto en negrita */
+    font-size: 1.1rem; /* Tamaño de fuente un poco más grande */
+}
+
+/* Estilos para el select */
+.filtro-container select {
+    padding: 8px 12px; /* Espaciado interno */
+    border: 1px solid #007bff; /* Bordes de color azul */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: #f8f9fa; /* Color de fondo */
+    font-size: 1rem; /* Tamaño de fuente */
+    transition: border-color 0.3s; /* Transición suave para el borde */
+}
+
+/* Efecto al pasar el mouse sobre el select */
+.filtro-container select:hover {
+    border-color: #0056b3; /* Cambio de color del borde al pasar el mouse */
+}
+
+/* Efecto al seleccionar un estado */
+.filtro-container select:focus {
+    outline: none; /* Sin contorno por defecto */
+    border-color: #0056b3; /* Cambia el color del borde al enfocar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra para el enfoque */
+}
+
+/* Media query para otras configuraciones de la tabla */
+@media (min-width: 769px) {
+    .task-table {
+        margin: 25px;
+        margin-left: -8px;
+        padding: 50px;
+    }
+}

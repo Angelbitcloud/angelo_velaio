@@ -1,0 +1,147 @@
+/* Estilos generales de la barra de navegación */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #343a40;
+    z-index: 1000;
+}
+
+/* Estilos para el elemento activo del menú */
+.desktop-menu li.active {
+    background-color: white;
+    /* Fondo blanco */
+    border-radius: 10px;
+    /* Bordes redondos */
+}
+
+/* Estilos de transición opcionales */
+.desktop-menu li.active a {
+    color: #343a40;
+    /* Color de texto cuando está activo */
+}
+
+
+/* Contenedor de la navbar */
+.navbar-container {
+    display: flex;
+    /* Cambiar a flexbox */
+    justify-content: center;
+    /* Espacio entre icono del menú y menú */
+    align-items: center;
+    padding: 10px 20px;
+    margin: 0 auto;
+    /* Centrar el contenedor */
+}
+
+/* Estilos para el menú de escritorio */
+.navbar-desktop {
+    flex: 1;
+    /* Permitir que el menú ocupe el espacio restante */
+    display: flex;
+    /* Cambiar a flexbox */
+    justify-content: center;
+    /* Centrar elementos dentro del menú */
+}
+
+/* Menú de escritorio */
+.desktop-menu {
+    display: flex;
+    /* Cambiar a flexbox */
+    justify-content: center;
+    /* Centrar elementos en el menú */
+    list-style: none;
+    padding: 0;
+    /* Eliminar padding para centrar mejor */
+}
+
+/* Elementos del menú */
+.desktop-menu li {
+    margin: 0 15px;
+}
+
+/* Estilos para enlaces del menú */
+.desktop-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: color 0.3s;
+}
+
+/* Hover para enlaces del menú */
+.desktop-menu a:hover {
+    color: #ccc;
+}
+
+/* Icono del menú */
+.menu-icon {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 3px;
+    margin-left: 510px;
+}
+
+/* Barras del icono del menú */
+.bar {
+    height: 2px;
+    width: 100%;
+    background-color: white;
+
+}
+
+/* Menú móvil */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #343a40;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000;
+    list-style: none;
+    /* Sin puntos en los elementos de la lista */
+}
+
+.mobile-menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: color 0.3s;
+}
+
+/* Menú activo para móviles */
+.mobile-menu.active {
+    display: flex;
+}
+
+/* Media query para ocultar el menú de escritorio en móviles */
+@media (max-width: 768px) {
+    .desktop-menu {
+        display: none;
+    }
+
+}
+
+/* Media query para mostrar el menú móvil en pantallas pequeñas */
+@media (min-width: 769px) {
+    .mobile-menu {
+        display: none;
+        /* Ocultar menú móvil */
+    }
+
+    .menu-icon {
+        display: none;
+        /* Ocultar icono del menú en escritorio */
+    }
+}

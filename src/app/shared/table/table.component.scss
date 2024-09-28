@@ -1,0 +1,9 @@
+.table-responsive {
+    max-width: 100%; 
+    overflow-x: auto; /* Permite el scroll horizontal */
+    margin: 20px 0; 
+}
+
+.table {
+    width: 100%; /* Asegúra de que la tabla ocupe el 100% del contenedor */
+}

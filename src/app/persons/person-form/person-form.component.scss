@@ -1,0 +1,114 @@
+.layout {
+    width: 100%;
+    /* Asegúrate de que la sección ocupe todo el ancho */
+    display: grid;
+    grid-template-areas: 
+        "header"
+        "main"
+        "footer";
+    gap: 8px;
+    /* Espaciado entre las áreas */
+    padding-top: 60px; /* Espacio para la navbar */
+    /* Ajusta el padding superior según la altura de tu navbar */
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    grid-area: header;
+}
+
+.main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+}
+
+.footer {
+    grid-area: footer;
+}
+
+/* Asegúrate de que el formulario esté centrado */
+form {
+    width: 100%;
+    max-width: 600px; /* Ancho máximo del formulario */
+    /* Cambia este valor según tus necesidades */
+    margin: 0 auto; /* Centra el formulario */
+}
+
+
+.header {
+    grid-area: header;
+    padding: 30px 0; /* Padding superior e inferior de 30px */
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+.error-message {
+    color: red; /* Color del texto en rojo */
+    font-size: 14px; /* Ajusta el tamaño de la fuente según sea necesario */
+    margin-top: 5px; /* Espaciado superior opcional */
+}
+
+.bold-label {
+    font-weight: bold; /* Aplica negrita al texto */
+}
+
+.habilidades-container {
+    background-color: #d3d3d3; /* Fondo gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    margin-top: 10px; /* Espaciado superior para separar del botón */
+
+}
+
+.habilidad-item {
+    color: white; /* Color del texto en blanco */
+    padding: 8px 12px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    display: flex;
+    justify-content: space-between; /* Espacio entre texto y X */
+    width: 100%; /* Ancho total */
+    margin-bottom: 5px; /* Espaciado inferior entre habilidades */
+    text-transform: uppercase; /* Hacer que el texto esté en mayúsculas */
+    font-weight: bold; /* Negrita para el texto */
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 10px; /* Espacio entre elementos del grid */
+}
+
+.grid-item {
+    border: 1px solid #ddd; /* Borde para cada habilidad */
+    padding: 10px; /* Espaciado interno */
+    display: flex;
+    justify-content: space-between; /* Espaciado entre el texto y el botón de eliminar */
+    align-items: center; /* Alinear verticalmente el contenido */
+    background-color: #d3d3d3; /* Fondo gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    color: white; /* Color del texto en blanco */
+    text-transform: uppercase; /* Hacer que el texto esté en mayúsculas */
+    font-weight: bold; /* Negrita para el texto */
+}
+
+.habilidad-text {
+    flex: 1; /* Permitir que el texto ocupe todo el espacio disponible */
+    text-align: center; /* Centrar el texto horizontalmente */
+}
+
+.delete-icon {
+    cursor: pointer; /* Cambia el cursor al pasar sobre la X */
+    margin-left: 10px; /* Espaciado a la izquierda de la X */
+}
+
+.secondary{
+    display: block;
+    margin: 50px auto; /* Centrar horizontalmente y agregar margen superior */
+    padding: 10px 20px; /* Añadir un poco de espacio alrededor del botón */
+    text-align: center;
+}
+

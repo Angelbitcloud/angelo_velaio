@@ -1,0 +1,36 @@
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-desktop">
+            <!-- Menú para computadoras -->
+            <ul class="desktop-menu">
+                <li [class.active]="isActive('/persons/create')">
+                    <a routerLink="/persons/create" (click)="closeMenu()">Crear Persona</a>
+                </li>
+                <li [class.active]="isActive('/persons/list')">
+                    <a routerLink="/persons/list" (click)="closeMenu()">Lista de Personas</a>
+                </li>
+                <li [class.active]="isActive('/tasks/create')">
+                    <a routerLink="/tasks/create" (click)="closeMenu()">Crear Tarea</a>
+                </li>
+                <li [class.active]="isActive('/tasks/list')">
+                    <a routerLink="/tasks/list" (click)="closeMenu()">Lista de Tareas</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Icono del menú en móvil -->
+        <div class="menu-icon" (click)="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <!-- Menú desplegable para móviles -->
+        <ul *ngIf="isMenuOpen" class="mobile-menu" [class.active]="isMenuOpen">
+            <li><a routerLink="/persons/create" (click)="closeMenu()">Crear Persona</a></li>
+            <li><a routerLink="/persons/list" (click)="closeMenu()">Lista de Personas</a></li>
+            <li><a routerLink="/tasks/create" (click)="closeMenu()">Crear Tarea</a></li>
+            <li><a routerLink="/tasks/list" (click)="closeMenu()">Lista de Tareas</a></li>
+        </ul>
+    </div>
+</nav>

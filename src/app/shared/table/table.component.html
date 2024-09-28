@@ -1,0 +1,25 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" *ngFor="let column of displayedColumns">
+                    {{ column | titlecase }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of data">
+                <td *ngFor="let column of displayedColumns">
+                    <ng-container *ngIf="isArray(row[column]); else singleValue">
+                        <ul>
+                            <li *ngFor="let item of row[column]">{{ item }}</li>
+                        </ul>
+                    </ng-container>
+                    <ng-template #singleValue>
+                        {{ row[column] }}
+                    </ng-template>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

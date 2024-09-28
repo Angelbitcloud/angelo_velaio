@@ -1,0 +1,60 @@
+<section class="layout">
+    <div class="header">
+        <h1>Crear Nueva Persona</h1>
+    </div>
+
+    <div class="main">
+        <form [formGroup]="personForm" (ngSubmit)="crearPersona()">
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="nombreCompleto" class="bold-label">Nombre Completo</label>
+                        <input type="text" class="form-control" id="nombreCompleto" formControlName="nombreCompleto"
+                            placeholder="Nombre Completo" />
+                        <div *ngIf="personForm.get('nombreCompleto')?.invalid && personForm.get('nombreCompleto')?.touched"
+                            class="error-message">
+                            El nombre debe tener al menos 5 caracteres.
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="edad" class="bold-label">Edad</label>
+                        <input id="edad" class="form-control" formControlName="edad" type="number" placeholder="Edad" />
+                        <div *ngIf="personForm.get('edad')?.invalid && personForm.get('edad')?.touched"
+                            class="error-message">
+                            Debe ser mayor de edad.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Campo para nueva habilidad en la parte superior -->
+            <div class="form-group">
+                <label for="nuevaHabilidad" class="bold-label">Nueva Habilidad</label>
+                <input type="text" class="form-control" id="nuevaHabilidad" formControlName="nuevaHabilidad"
+                    placeholder="Nueva Habilidad" />
+            </div>
+            <button type="button" (click)="agregarHabilidad()" class="btn btn-outline-secondary"
+            [disabled]="personForm.get('nuevaHabilidad')?.value.trim() === ''"
+            >Agregar Habilidad</button>
+
+            <!-- Grid para habilidades agregadas -->
+            <div formArrayName="habilidades">
+                <label class="bold-label">Habilidades Agregadas</label>
+                <div class="grid-container">
+                    <div *ngFor="let habilidad of habilidades.controls; let i = index" class="grid-item">
+                        <span>{{ habilidad.value }}</span>
+                        <button type="button" (click)="eliminarHabilidad(i)" class="btn btn-danger">X</button>
+                    </div>
+                </div>
+            </div>
+            <div class="secondary">
+                <button type="submit" [disabled]="personForm.invalid" class="btn btn-outline-secondary create">Crear
+                    Persona</button>
+            </div>
+            
+        </form>
+    </div>
+    <div class="footer"></div>
+</section>
