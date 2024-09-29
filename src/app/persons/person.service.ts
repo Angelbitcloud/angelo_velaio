@@ -7,7 +7,7 @@ import { Persona } from '../interfaces/person.interface';
   providedIn: 'root'
 })
 export class PersonService {
-  private apiUrl = 'http://localhost:8000/tareas/personas';  // URL de tu API REST
+  private apiUrl = 'http://localhost:8000/tareas/personas';  
 
   constructor(private http: HttpClient) {}
 

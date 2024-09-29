@@ -7,7 +7,8 @@
                 <th>Fecha Límite</th>
                 <th>Nombre Integrantes</th>
                 <th>Habilidades</th>
-                <th>Estado</th> <!-- Nueva columna para el estado -->
+                <th>Estado</th> 
+                <th>Acciones</th> 
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,9 @@
                         </select>
                     </div>
                     
+                </td>
+                <td>
+                    <button class="btn btn-primary" (click)="editarTarea(tarea)">Editar</button> <!-- Botón de edición -->
                 </td> <!-- Select para cambiar el estado de la tarea -->
             </tr>
         </tbody>

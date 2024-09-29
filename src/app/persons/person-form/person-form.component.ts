@@ -43,6 +43,14 @@ eliminarHabilidad(index: number) {
   this.habilidades.removeAt(index); // Elimina la habilidad en el índice especificado
 }
 
+// Método para restablecer el formulario
+reiniciarFormulario() {
+  this.personForm.controls['nombreCompleto'].setValue('');
+  this.personForm.controls['edad'].setValue(null);
+  this.personForm.controls['habilidades'].setValue([]);
+}
+
+
   // Método para crear una nueva persona
   crearPersona() {
     if (this.personForm.valid) {
@@ -58,7 +66,9 @@ eliminarHabilidad(index: number) {
         (persona) => {
           console.log('Persona creada con éxito:', persona);
           // Aquí puedes limpiar el formulario o redirigir a otra página si es necesario
-          this.personForm.reset(); // Opcional: limpiar el formulario después de enviar
+          //this.personForm.reset(); // Opcional: limpiar el formulario después de enviar
+          this.reiniciarFormulario(); // Limpiar los campos del formulario
+
         },
         (error) => {
           console.error('Error al crear la persona:', error);
