@@ -1,8 +1,8 @@
 <section class="layout">
     <div class="header">
-        <h1>Crear Nueva Tarea</h1>
+        <h1>{{ esEditar ? 'Editar Tarea' : 'Crear Nueva Tarea' }}</h1>
     </div>
-
+    
     <div class="main">
         <form [formGroup]="taskForm" (ngSubmit)="crearTarea()">
             <div class="form-row">

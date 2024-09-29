@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../task.service';
 import { PersonService } from '../../persons/person.service'; // Ajusta la ruta según tu estructura
 import { Persona } from '../../interfaces/person.interface'; // Asegúrate de tener la interfaz de Persona
+import { Tarea } from 'src/app/interfaces/task.interface';
 
 @Component({
   selector: 'app-task-form',
@@ -14,11 +16,14 @@ export class TaskFormComponent implements OnInit {
   personas: Persona[] = [];
   personasSeleccionadas: Persona[] = [];
   personaBuscada: string = ''; // Para filtrar personas
+  tareaId: number | null = null;
+  esEditar: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private taskService: TaskService,
-    private personService: PersonService
+    private personService: PersonService,
+    private route: ActivatedRoute
   ) {
     this.taskForm = this.fb.group({
       nombreTarea: ['', [Validators.required, Validators.minLength(5)]],
@@ -29,6 +34,33 @@ export class TaskFormComponent implements OnInit {
 
   ngOnInit() {
     this.cargarPersonas();
+    
+    // Leer el id de la tarea desde la ruta
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');  // Obtener el parámetro 'id'
+      if (id) {
+        this.tareaId = +id;  // Convertir el id a número
+        this.esEditar = true;  // Si hay id, estamos editando
+        this.cargarTarea(this.tareaId);  // Cargar los datos de la tarea para edición
+      } else {
+        this.esEditar = false;  // Si no hay id, es una nueva tarea
+      }
+    });
+  }
+
+  cargarTarea(id: number) {
+    this.taskService.getTareaById(id).subscribe((tarea: Tarea) => {
+      console.log('Tarea cargada para edición:', tarea);
+      
+      // Establecer los valores del formulario con los datos de la tarea
+      this.taskForm.patchValue({
+        nombreTarea: tarea.nombreTarea,
+        fechaLimite: tarea.fechaLimite
+      });
+  
+      // Cargar las personas asociadas
+      this.personasSeleccionadas = tarea.personasAsociadas || [];
+    });
   }
 
   cargarPersonas() {
@@ -62,13 +94,24 @@ export class TaskFormComponent implements OnInit {
     if (this.taskForm.valid) {
       const nuevaTarea = {
         ...this.taskForm.value,
-        estado: 'Pendiente', // o el estado que desees
-        personasAsociadas: this.personasSeleccionadas        
+        estado: 'Pendiente',
+        personasAsociadas: this.personasSeleccionadas
       };
-      this.taskService.crearTarea(nuevaTarea).subscribe(() => {
-        this.taskForm.reset();
-        this.personasSeleccionadas = [];
-      });
+      
+      if (this.tareaId) {
+        // Si existe un id, es una tarea en edición
+        this.taskService.actualizarTarea(this.tareaId, nuevaTarea).subscribe(() => {
+          console.log('Tarea actualizada');
+        });
+      } else {
+        // Si no existe id, es una tarea nueva
+        this.taskService.crearTarea(nuevaTarea).subscribe(() => {
+          console.log('Tarea creada');
+        });
+      }
+      
+      this.taskForm.reset();
+      this.personasSeleccionadas = [];
     }
   }
 }

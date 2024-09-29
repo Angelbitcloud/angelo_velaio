@@ -37,7 +37,6 @@ export class TaskListComponent implements OnInit {
           Habilidades: tarea.personasAsociadas.flatMap(persona => persona.habilidades),
           estado: tarea.estado // Asegúrate de que el campo estado esté presente en la respuesta del API
         }));
-        console.log('Tareas cargadas:', this.tareas);
       },
       (error) => {
         console.error('Error al cargar las tareas:', error);
@@ -48,9 +47,7 @@ export class TaskListComponent implements OnInit {
   // Método para editar una tarea
   editarTarea(tarea: Tarea): void {
     // Navegar a la página de crear tarea con el ID de la tarea a editar
-    this.router.navigate(['/task/edit', tarea.id]); 
-    console.log(tarea.id);
-    
+    this.router.navigate(['/tasks/edit', tarea.id]); 
   }
 
   // Método para actualizar el estado de una tarea
